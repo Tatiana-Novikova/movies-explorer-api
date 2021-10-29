@@ -4,7 +4,6 @@ const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-const { MONGO_URL, PORT } = require('./config');
 const { CORS } = require('./middlewares/cors');
 const errorHandler = require('./middlewares/error-handler');
 const { limiter } = require('./middlewares/rate-limit');
@@ -13,7 +12,9 @@ const rootRouter = require('./routes/index');
 
 const app = express();
 
-mongoose.connect(MONGO_URL, {
+const { PORT = 3000, NODE_ENV, MONGO_URL } = process.env;
+
+mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : 'mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
