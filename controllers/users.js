@@ -56,11 +56,7 @@ const login = (req, res, next) => {
         if (isValid) {
           const token = jwt.sign(
             { _id: user._id },
-<<<<<<< HEAD
             NODE_ENV === 'production' ? JWT_SECRET : 'dev-key',
-=======
-            NODE_ENV === 'development' ? JWT_SECRET : 'dev-key',
->>>>>>> 7b0dd6fa96163d6e40a67532c98b9cc09c022ab3
             { expiresIn: '7d' },
           );
           res.cookie('jwt', token, {

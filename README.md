@@ -4,11 +4,7 @@
 Сайт для поиска и сохранения фильмов.
 
 Домен и публичный IP-адрес приложения:<br>
-<<<<<<< HEAD
-http://movies-explorer.nomoredomains.work:3000/<br>
-=======
 http://movies-explorer.nomoredomains.work<br>
->>>>>>> 7b0dd6fa96163d6e40a67532c98b9cc09c022ab3
 62.84.118.34<br>
 
 В данном репозитории Backend-часть проекта, созданная с использованием `Node.js`.<br>
