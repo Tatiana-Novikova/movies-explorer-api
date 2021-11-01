@@ -1,9 +1,9 @@
-const CONFLICT_CODE = require('../utils/constants');
+const { CONFLICT_ERROR_CODE } = require('../utils/constants');
 
 class ConflictError extends Error {
   constructor(message) {
     super(message);
-    this.statusCode = CONFLICT_CODE;
+    this.statusCode = CONFLICT_ERROR_CODE;
   }
 }
 
