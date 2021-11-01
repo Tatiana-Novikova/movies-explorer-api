@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema({
   },
   name: {
     type: String,
+<<<<<<< HEAD
     required: true;
+=======
+    required: true,
+>>>>>>> 7b0dd6fa96163d6e40a67532c98b9cc09c022ab3
     minlength: 2,
     maxlength: 30,
   },
