@@ -13,7 +13,7 @@ const validateSignUp = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
-    name: Joi.string().min(2).max(30).default('Имя'),
+    name: Joi.string().required().min(2).max(30),
   }),
 });
 
@@ -26,7 +26,7 @@ const validateSignIn = celebrate({
 
 const validateUserId = celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().hex().length(24),
+    userId: Joi.string().required().hex().length(24),
   }),
 });
 
@@ -55,7 +55,7 @@ const validateCreateMovie = celebrate({
 
 const validateMovieCardId = celebrate({
   params: Joi.object().keys({
-    id: Joi.string().hex().length(24).required(),
+    id: Joi.string().required().hex().length(24),
   }),
 });
 

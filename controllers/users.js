@@ -1,10 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-const { NODE_ENV, JWT_SECRET } = require('../config');
-
-const OK = 200;
-const CREATED = 201;
+const { NODE_ENV, JWT_SECRET } = require('../utils/config');
+const { OK, CREATED } = require('../utils/constants');
 
 const BadRequestError = require('../errors/bad-request-error');
 const UnauthorizedError = require('../errors/unauthorized-error');
@@ -29,7 +27,12 @@ const createUser = (req, res, next) => {
         .then((hash) => {
           User.create({ email, password: hash, name })
             .then((userData) => {
-              res.status(CREATED).send(userData);
+              res.status(CREATED).send({
+                data: {
+                  name: userData.name,
+                  email: userData.email,
+                },
+              });
             })
             .catch(next);
         });
