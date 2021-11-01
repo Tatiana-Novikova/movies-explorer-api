@@ -1,5 +1,4 @@
-const OK = 200;
-const CREATED = 201;
+const { OK, CREATED } = require('../utils/constants');
 
 const ForbiddenError = require('../errors/forbidden-error');
 const NotFoundError = require('../errors/not-found-error');
