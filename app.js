@@ -1,9 +1,9 @@
 const express = require('express');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-const CORS = require('./middlewares/cors');
 const { PORT, MONGO_URL } = require('./utils/config');
 const errorHandler = require('./middlewares/error-handler');
 const { limiter } = require('./middlewares/rate-limit');
@@ -16,13 +16,21 @@ mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
+  useUnifiedTopology: true,
 });
 
 app.use(requestLogger);
 app.use(limiter);
 app.use(express.json());
+app.use(cors({
+  origin: [
+    'http://movies-explorer.nomoredomains.work',
+    'https://movies-explorer.nomoredomains.work',
+    'http://localhost:3000',
+  ],
+  credentials: true,
+}));
 app.use(cookieParser());
-app.use(CORS());
 app.use(helmet());
 app.disable('x-powered-by');
 app.use(rootRouter);
