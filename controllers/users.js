@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-const { NODE_ENV, JWT_SECRET } = require('../utils/config');
+
+require('dotenv').config();
+
+const { NODE_ENV } = process.env;
+const { JWT_SECRET } = NODE_ENV === 'production' ? process.env : require('../utils/config');
 const { OK, CREATED } = require('../utils/constants');
 
 const BadRequestError = require('../errors/bad-request-error');
