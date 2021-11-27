@@ -69,7 +69,6 @@ const login = (req, res, next) => {
             {
               path: '/',
               httpOnly: true,
-              sameSite: true,
             },
           ).status(OK).send({ token });
         }
