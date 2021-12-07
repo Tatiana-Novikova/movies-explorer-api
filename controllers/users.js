@@ -69,7 +69,7 @@ const login = (req, res, next) => {
             {
               path: '/',
               httpOnly: true,
-              sameSite: 'None',
+              sameSite: 'none',
               secure: true,
             },
           ).status(OK).send({ token });
@@ -82,10 +82,12 @@ const login = (req, res, next) => {
 };
 
 const signOut = (req, res) => {
-  res
-    .status(OK)
-    .clearCookie('jwt')
-    .send({ message: 'Успешный выход из приложения' });
+  if (req.cookies) {
+    res
+      .status(OK)
+      .clearCookie('jwt')
+      .send({ message: 'Успешный выход из приложения' });
+  }
 };
 
 const updateProfile = (req, res, next) => {
