@@ -9,7 +9,7 @@ const { validateSignUp, validateSignIn } = require('../middlewares/celebrate-val
 router.post('/signup', validateSignUp, createUser);
 router.post('/signin', validateSignIn, login);
 router.use(auth);
-router.post('/signout', signOut);
+router.delete('/signout', signOut);
 router.use('/users', userRouter);
 router.use('/movies', moviesRouter);
 router.use((req, res, next) => next(new NotFoundError('Запрашиваемый ресурс не найден')));
