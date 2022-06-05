@@ -27,6 +27,7 @@ app.use(cors({
     'http://movies-explorer.nomoredomains.work',
     'https://movies-explorer.nomoredomains.work',
     'http://localhost:3000',
+    'http://localhost:3001'
   ],
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
