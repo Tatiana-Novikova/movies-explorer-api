@@ -19,20 +19,21 @@ mongoose.connect(MONGO_URL, {
   useUnifiedTopology: true,
 });
 
-app.use(requestLogger);
-app.use(limiter);
-app.use(express.json());
 app.use(cors({
   origin: [
     'http://movies-explorer.nomoredomains.work',
     'https://movies-explorer.nomoredomains.work',
     'http://localhost:3000',
+    'http://localhost:3001',
   ],
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
   optionsSuccessStatus: 204,
 }));
+app.use(requestLogger);
+app.use(limiter);
+app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
 app.disable('x-powered-by');
