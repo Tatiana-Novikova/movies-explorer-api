@@ -19,9 +19,6 @@ mongoose.connect(MONGO_URL, {
   useUnifiedTopology: true,
 });
 
-app.use(requestLogger);
-app.use(limiter);
-app.use(express.json());
 app.use(cors({
   origin: [
     'http://movies-explorer.nomoredomains.work',
@@ -34,6 +31,9 @@ app.use(cors({
   preflightContinue: false,
   optionsSuccessStatus: 204,
 }));
+app.use(requestLogger);
+app.use(limiter);
+app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
 app.disable('x-powered-by');
