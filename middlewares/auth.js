@@ -9,10 +9,10 @@ const { JWT_SECRET } = NODE_ENV === 'production'
 const UnauthorizedError = require('../errors/unauthorized-error');
 
 const auth = (req, res, next) => {
-  if (!req.cookies.jwt) {
+  const token = req.headers.autharization;
+  if (!token) {
     return next(new UnauthorizedError('Необходима авторизация'));
   }
-  const token = req.cookies.jwt;
   let payload;
   try {
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-key');
