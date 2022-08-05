@@ -27,6 +27,7 @@ const createMovie = (req, res, next) => {
     nameRU,
     nameEN,
   } = req.body;
+  console.log(req.body);
   Movie.create({
     country,
     director,
@@ -46,6 +47,7 @@ const createMovie = (req, res, next) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError('Переданы невалидные данные'));
       }
+      console.log(err);
       return (next);
     });
 };
