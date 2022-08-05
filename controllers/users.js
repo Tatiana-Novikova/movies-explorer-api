@@ -11,12 +11,17 @@ const { OK, CREATED } = require('../utils/constants');
 
 const BadRequestError = require('../errors/bad-request-error');
 const UnauthorizedError = require('../errors/unauthorized-error');
+const NotFoundError = require('../errors/not-found-error');
 const ConflictError = require('../errors/conflict-error');
 
 const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
-      res.status(OK).send(user);
+      if (!user) {
+        throw next(new NotFoundError('Пользователь c заданным id не найден'));
+      } else {
+        res.status(OK).send(user);
+      }
     })
     .catch(next);
 };
