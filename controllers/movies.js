@@ -15,39 +15,37 @@ const getMovies = (req, res, next) => {
 const createMovie = (req, res, next) => {
   const {
     country,
-    // director,
-    // duration,
-    // year,
-    // description,
-    // image,
-    // trailerLink,
-    // thumbnail,
-    // owner = req.user._id,
-    // movieId,
-    // nameRU,
-    // nameEN,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    owner = req.user._id,
+    movieId,
+    nameRU,
+    nameEN,
   } = req.body;
-  console.log(req.body);
   Movie.create({
     country,
-    // director,
-    // duration,
-    // year,
-    // description,
-    // image,
-    // trailerLink,
-    // thumbnail,
-    // owner,
-    // movieId,
-    // nameRU,
-    // nameEN,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    owner,
+    movieId,
+    nameRU,
+    nameEN,
   })
     .then((movie) => res.status(CREATED).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError('Переданы невалидные данные'));
       }
-      console.log(err);
       return (next);
     });
 };

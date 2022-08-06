@@ -1,13 +1,13 @@
 const { celebrate, Joi } = require('celebrate');
-// const validator = require('validator');
+const validator = require('validator');
 
-// const isURL = (v) => {
-//   const result = validator.isURL(v, { require_protocol: true });
-//   if (result) {
-//     return v;
-//   }
-//   throw new Error('Неверный формат ссылки.');
-// };
+const isURL = (v) => {
+  const result = validator.isURL(v, { require_protocol: true });
+  if (result) {
+    return v;
+  }
+  throw new Error('Неверный формат ссылки.');
+};
 
 const validateSignUp = celebrate({
   body: Joi.object().keys({
@@ -39,17 +39,17 @@ const validateUpdateProfile = celebrate({
 
 const validateCreateMovie = celebrate({
   body: Joi.object().keys({
-    country: Joi.string(),
-    director: Joi.string(),
-    duration: Joi.number(),
-    year: Joi.string(),
-    description: Joi.string(),
-    image: Joi.string(),
-    trailer: Joi.string(),
-    thumbnail: Joi.string(),
-    movieId: Joi.number(),
-    nameRU: Joi.string(),
-    nameEN: Joi.string(),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required().custom(isURL),
+    trailerLink: Joi.string().required().custom(isURL),
+    thumbnail: Joi.string().required().custom(isURL),
+    movieId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
   }),
 });
 
